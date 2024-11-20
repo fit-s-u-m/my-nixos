@@ -18,7 +18,7 @@ in
     ../../config/emoji.nix
     ../../config/fastfetch
     ../../config/hyprland.nix
-    ../../config/neovim.nix
+    # ../../config/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
@@ -75,9 +75,9 @@ in
   };
 
   # Styling Options
-  stylix.targets.waybar.enable = false;
+  stylix.targets.waybar.enable = true;
   stylix.targets.rofi.enable = false;
-  stylix.targets.hyprland.enable = false;
+  stylix.targets.hyprland.enable = true;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";

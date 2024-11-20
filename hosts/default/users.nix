@@ -15,6 +15,7 @@ in
       description = "${gitUsername}";
       extraGroups = [
         "networkmanager"
+        "docker"
         "wheel"
         "libvirtd"
         "scanner"
@@ -22,17 +23,6 @@ in
       ];
       shell = pkgs.bash;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [
-      ];
     };
-    # "newuser" = {
-    #   homeMode = "755";
-    #   isNormalUser = true;
-    #   description = "New user account";
-    #   extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    #   shell = pkgs.bash;
-    #   ignoreShellProgramCheck = true;
-    #   packages = with pkgs; [];
-    # };
   };
 }

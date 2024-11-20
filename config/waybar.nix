@@ -22,7 +22,6 @@ with lib;
         position = "top";
         modules-center = [ "hyprland/workspaces" ];
         modules-left = [
-          "custom/startmenu"
           "hyprland/window"
           "pulseaudio"
           "cpu"
@@ -30,11 +29,12 @@ with lib;
           "idle_inhibitor"
         ];
         modules-right = [
-          "custom/hyprbindings"
-          "custom/notification"
-          "custom/exit"
-          "battery"
+          "network"
           "tray"
+          "custom/notification"
+          "backlight"
+          "battery"
+          "custom/exit"
           "clock"
         ];
 
@@ -43,7 +43,7 @@ with lib;
           format-icons = {
             default = " ";
             active = " ";
-            urgent = " ";
+            urgent = "🌪️ ";
           };
           on-scroll-up = "hyprctl dispatch workspace e+1";
           on-scroll-down = "hyprctl dispatch workspace e-1";
@@ -60,10 +60,33 @@ with lib;
             "" = " 🙈 No Windows? ";
           };
         };
+        "backlight"= {
+            device= "intel_backlight";
+            rotate= 0;
+            format= "{icon} {percent}%";
+            format-icons= [""  ""  ""  ""  ""  ""  ""  ""  ""];
+            on-scroll-up= "brightnessctl set 1%+";
+            on-scroll-down= "brightnessctl set 1%-";
+            min-length= 6;
+        };
         "memory" = {
           interval = 5;
           format = " {}%";
           tooltip = true;
+        };
+        "network"= {
+            tooltip= true;
+            format-wifi= "🛜 <span foreground='#99ffdd'>☁️👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☁️☝️ {bandwidthUpBytes}</span>";
+            rotate= 0;
+            format-ethernet= "🔌 <span foreground='#99ffdd'>☁️👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☁️☝️ {bandwidthUpBytes}</span>";
+            tooltip-format= "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
+            format-linked= "󰈀 {ifname} (No IP)";
+            format-disconnected= "󰖪 ";
+            tooltip-format-disconnected= "Disconnected";
+            format-alt= "<span foreground='#99ffdd'>☁️👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☁️☝️ {bandwidthUpBytes}</span>";
+            interval= 2;
+            on-click = "";
+
         };
         "cpu" = {
           interval = 5;
@@ -74,19 +97,19 @@ with lib;
           format = " {free}";
           tooltip = true;
         };
-        "network" = {
-          format-icons = [
-            "󰤯"
-            "󰤟"
-            "󰤢"
-            "󰤥"
-            "󰤨"
-          ];
-          format-ethernet = " {bandwidthDownOctets}";
-          format-wifi = "{icon} {signalStrength}%";
-          format-disconnected = "󰤮";
-          tooltip = false;
-        };
+        # "network" = {
+        #   format-icons = [
+        #     "󰤯"
+        #     "󰤟"
+        #     "󰤢"
+        #     "󰤥"
+        #     "󰤨"
+        #   ];
+        #   format-ethernet = " {bandwidthDownOctets}";
+        #   format-wifi = "{icon} {signalStrength}%";
+        #   format-disconnected = "󰤮";
+        #   tooltip = false;
+        # };
         "tray" = {
           spacing = 12;
         };
@@ -184,7 +207,7 @@ with lib;
       ''
         * {
           font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 16px;
+          font-size: 13px;
           border-radius: 0px;
           border: none;
           min-height: 0px;

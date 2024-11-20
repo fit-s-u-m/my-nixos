@@ -58,6 +58,10 @@ in
         nvim-tree-lua
         telescope-fzf-native-nvim
         vim-tmux-navigator
+        copilot-vim
+        which-key-nvim
+        flash-nvim
+        catppuccin-nvim
       ];
       extraConfig = ''
         set noemoji
@@ -81,6 +85,9 @@ in
         require("bufferline").setup{}
         require("lualine").setup({
           icons_enabled = true,
+        })
+        require("catppuccin").setup({
+           transparent_background = true,  -- Optional: Enable transparent background
         })
       '';
     };

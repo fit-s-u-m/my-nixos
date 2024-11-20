@@ -60,7 +60,7 @@ with lib;
           input {
             kb_layout = ${keyboardLayout}
             kb_options = grp:alt_shift_toggle
-            kb_options = caps:super
+            kb_options = caps:ctrl
             follow_mouse = 1
             touchpad {
               natural_scroll = true
@@ -75,7 +75,7 @@ with lib;
           windowrule = center,^(steam)$
           windowrule = float, nm-connection-editor|blueman-manager
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
-          windowrule = float, nwg-look|qt5ct|mpv
+          # windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
@@ -98,7 +98,6 @@ with lib;
             bezier = liner, 1, 1, 1, 1
             animation = windows, 1, 6, wind, slide
             animation = windowsIn, 1, 6, winIn, slide
-            animation = windowsOut, 1, 5, winOut, slide
             animation = windowsMove, 1, 5, wind, slide
             animation = border, 1, 1, liner
             animation = fade, 1, 10, default
@@ -132,16 +131,16 @@ with lib;
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}
-          bind = ${modifier},E,exec,emopicker9000
-          bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,discord
+          bind = ${modifier},Apostrophe ,exec,emopicker9000
+          bind = ${modifier},P,exec,screenshootin
+          bind = ${modifier},D, exec, bemenu-run   --hb '##467b96' --hf '##dfdfdf' --tb '##467b96' --tf '##dfdfdf' -H 30  -p 'Run:'
           bind = ${modifier},O,exec,obs
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier},G,exec,gimp
           bind = ${modifier}SHIFT,G,exec,godot4
-          bind = ${modifier},T,exec,thunar
+          bind = ${modifier},E,exec,thunar
           bind = ${modifier},M,exec,spotify
-          bind = ${modifier},Q,killactive,
+          bind = ${modifier},ESCAPE,killactive,
           bind = ${modifier},P,pseudo,
           bind = ${modifier}SHIFT,I,togglesplit,
           bind = ${modifier},F,fullscreen,
@@ -191,18 +190,28 @@ with lib;
           bind = ${modifier},mouse_up,workspace, e-1
           bindm = ${modifier},mouse:272,movewindow
           bindm = ${modifier},mouse:273,resizewindow
-          bind = ALT,Tab,cyclenext
-          bind = ALT,Tab,bringactivetotop
+          bind = ${modifier}, Tab,workspace, previous
+          # bind = ${modifier},Tab,bringactivetotop
+          bind = ${modifier}, BackSpace,exec,(sleep 1; hyprlock)
+
+          bind =  ${modifier},Equal,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+          bind =  ${modifier},Minus,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
           bind = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
           bind = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
           binde = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-          bind = ,XF86AudioPlay, exec, playerctl play-pause
-          bind = ,XF86AudioPause, exec, playerctl play-pause
+          bind = ${modifier}SHIFT,M,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+          bind = ${modifier}SHIFT,Equal,exec,playerctl next
+          bind = ${modifier}SHIFT,Minus,exec,playerctl previous
+          bind = ${modifier},slash, exec, playerctl play-pause
+
           bind = ,XF86AudioNext, exec, playerctl next
           bind = ,XF86AudioPrev, exec, playerctl previous
+
+          bind = ,XF86AudioPlay, exec, playerctl play-pause
+          bind = ,XF86AudioPause, exec, playerctl play-pause
           bind = ,XF86MonBrightnessDown,exec,brightnessctl set 5%-
           bind = ,XF86MonBrightnessUp,exec,brightnessctl set +5%
         ''
       ];
-  };
-}
+  };}

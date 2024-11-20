@@ -232,7 +232,6 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-
   users = {
     mutableUsers = true;
   };
@@ -251,6 +250,7 @@ in
     nushell
 
     # shell-things
+    stow
     tree
     cmatrix
     unzip
@@ -264,6 +264,7 @@ in
     bat
     ripgrep
     fzf
+    zellij
 
     # editor
     vim
@@ -303,8 +304,14 @@ in
     pavucontrol
 
     # programing
+    docker
     cargo
     python3
+    bun
+    gcc
+    clang
+    # ts
+    # nodejs_23
     bun
 
     # youtube
@@ -373,7 +380,6 @@ in
       pkgs.xdg-desktop-portal
     ];
   };
-
   # Services to start
   services = {
     xserver = {
@@ -503,10 +509,11 @@ in
 
   # Virtualization / Containers
   virtualisation.libvirtd.enable = true;
-  virtualisation.podman = {
+  virtualisation.docker = {
     enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
+    enableOnBoot = true;
+    # dockerCompat = true;
+    # defaultNetwork.settings.dns_enabled = true;
   };
 
   # OpenGL
@@ -528,5 +535,6 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  # system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
