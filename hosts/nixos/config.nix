@@ -135,7 +135,6 @@ in
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
   programs = {
     firefox.enable = false;
     starship = {
@@ -229,6 +228,31 @@ in
         thunar-volman
       ];
     };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+     # dotDir = "/home/fitsum/.config/zsh";
+   zsh = {
+     enable = true;
+     enableCompletion = true;
+     autosuggestions.enable = true;
+     syntaxHighlighting.enable = true;
+
+     shellAliases = {
+        ll = "ls -l";
+        update = "sudo nixos-rebuild switch --flake /home/fitsum/zaneyos/#nixos";
+        q = "exit";
+        v = "nvim";
+     };
+      # zplug = {
+      #  enable = true;
+      #  # plugins = [
+      #  #   { name = "jeffreytse/zsh-vi-mode"; } 
+      #  # ];
+      # };
+   };
+   zsh.zplug.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -246,10 +270,15 @@ in
       swww
 
     # shell
-    zsh
+    carapace
+    zplug
+
+		fish
+    # zsh
     nushell
 
     # shell-things
+    zoxide
     stow
     tree
     cmatrix
@@ -268,7 +297,6 @@ in
 
     # editor
     vim
-    neovim
     neovide
 
 
@@ -306,12 +334,13 @@ in
     # programing
     docker
     cargo
+    go
     python3
     bun
     gcc
     clang
     # ts
-    # nodejs_23
+    nodejs_22
     bun
 
     # youtube
@@ -322,6 +351,7 @@ in
     bemenu
 
     # filemanager
+    yazi
     lf
     # every thing I don't know
     v4l-utils
@@ -535,6 +565,6 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  # system.stateVersion = "23.11"; # Did you read the comment?
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
+  # system.stateVersion = "24.05"; # Did you read the comment?
 }

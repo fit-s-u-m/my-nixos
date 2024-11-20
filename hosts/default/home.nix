@@ -155,6 +155,20 @@ in
         wheel_scroll_min_lines = 1;
         window_padding_width = 4;
         confirm_os_window_close = 0;
+        dynamic_background_opacity yes
+        map alt+a  set_background_opacity +0.1
+        map alt+s  set_background_opacity -0.1
+        enable_audio_bell no
+        map alt+shift+k change_font_size all +2.0 
+        map alt+shift+j  change_font_size all -2.0 
+
+        map ctrl+w no_op
+        map ctrl+shift+t no_op
+        map ctrl+shift+w no_op
+        map ctrl+shift+u no_op
+        map ctrl+shift+e no_op
+        map ctrl+shift+h no_op
+
       };
       extraConfig = ''
         tab_bar_style fade
