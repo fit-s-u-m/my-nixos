@@ -45,7 +45,7 @@ with lib;
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/mountainscapedark.jpg
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -128,7 +128,7 @@ with lib;
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec,rofi-launcher
           bind = ${modifier}SHIFT,W,exec,web-search
-          bind = ${modifier}ALT,W,exec,wallsetter
+          bind = ${modifier}SHIFT,right,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},Apostrophe ,exec,emopicker9000
@@ -192,7 +192,8 @@ with lib;
           bindm = ${modifier},mouse:273,resizewindow
           bind = ${modifier}, Tab,workspace, previous
           # bind = ${modifier},Tab,bringactivetotop
-          bind = ${modifier}, BackSpace,exec,(sleep 1; hyprlock)
+          bind = ${modifier}, BackSpace,exec,hyprlock
+          bind = ${modifier}SHIFT, BackSpace,exec,wlogout
 
           bind =  ${modifier},Equal,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
           bind =  ${modifier},Minus,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-

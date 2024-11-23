@@ -42,7 +42,7 @@ with lib;
           format = "{name}";
           format-icons = {
             default = " ";
-            active = " ";
+            active = "🌋 ";
             urgent = "🌪️ ";
           };
           on-scroll-up = "hyprctl dispatch workspace e+1";
@@ -64,7 +64,7 @@ with lib;
             device= "intel_backlight";
             rotate= 0;
             format= "{icon} {percent}%";
-            format-icons= [""  ""  ""  ""  ""  ""  ""  ""  ""];
+            format-icons= [""  ""  ""  ""  ""  ""  ""  ""  "🔅"];
             on-scroll-up= "brightnessctl set 1%+";
             on-scroll-down= "brightnessctl set 1%-";
             min-length= 6;
@@ -76,21 +76,21 @@ with lib;
         };
         "network"= {
             tooltip= true;
-            format-wifi= "🛜 <span foreground='#99ffdd'>☁️👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☁️☝️ {bandwidthUpBytes}</span>";
+            format-wifi= "🛜 <span foreground='#99ffdd'>👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☝️ {bandwidthUpBytes}</span>";
             rotate= 0;
-            format-ethernet= "🔌 <span foreground='#99ffdd'>☁️👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☁️☝️ {bandwidthUpBytes}</span>";
+            format-ethernet= "🔌 <span foreground='#99ffdd'>👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☝️ {bandwidthUpBytes}</span>";
             tooltip-format= "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
             format-linked= "󰈀 {ifname} (No IP)";
             format-disconnected= "󰖪 ";
             tooltip-format-disconnected= "Disconnected";
-            format-alt= "<span foreground='#99ffdd'>☁️👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'>☁️☝️ {bandwidthUpBytes}</span>";
+            format-alt= "<span foreground='#99ffdd'>👇 {bandwidthDownBytes}</span> <span foreground='#ffcc66'> ☝️ {bandwidthUpBytes}</span>";
             interval= 2;
             on-click = "";
 
         };
         "cpu" = {
           interval = 5;
-          format = " {usage:2}%";
+          format = "🖥️ {usage:2}%";
           tooltip = true;
         };
         "disk" = {
@@ -116,21 +116,21 @@ with lib;
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
+          format-bluetooth-muted = "🔇 {icon} {format_source}";
+          format-muted = "🔇 {format_source}";
           format-source = " {volume}%";
           format-source-muted = "";
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
+            headphone = "🎧";
+            hands-free = "🎧";
+            headset = "🎧";
             phone = "";
             portable = "";
-            car = "";
+            car = "🚗";
             default = [
-              ""
-              ""
-              ""
+              "🔈"
+              "🔊"
+              "🔊"
             ];
           };
           on-click = "sleep 0.1 && pavucontrol";
@@ -163,14 +163,14 @@ with lib;
           tooltip = false;
           format = "{icon} {}";
           format-icons = {
-            notification = "<span foreground='red'><sup></sup></span>";
-            none = "";
-            dnd-notification = "<span foreground='red'><sup></sup></span>";
-            dnd-none = "";
+            notification = "🔔<span foreground='red'><sup></sup></span>";
+            none = "🔔";
+            dnd-notification = "🔕<span foreground='red'><sup></sup></span>";
+            dnd-none = "🔕";
             inhibited-notification = "<span foreground='red'><sup></sup></span>";
             inhibited-none = "";
-            dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
-            dnd-inhibited-none = "";
+            dnd-inhibited-notification = "🔔<span foreground='red'><sup></sup></span>";
+            dnd-inhibited-none = "🔔";
           };
           return-type = "json";
           exec-if = "which swaync-client";
@@ -184,10 +184,10 @@ with lib;
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
+          format-charging = "🔌 {capacity}%";
           format-plugged = "󱘖 {capacity}%";
           format-icons = [
-            "󰁺"
+            "🪫"
             "󰁻"
             "󰁼"
             "󰁽"
@@ -276,7 +276,7 @@ with lib;
           padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
         }
-        #custom-hyprbindings, #network, #battery,
+        #custom-hyprbindings, #network, #battery,#backlight,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};

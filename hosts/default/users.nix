@@ -10,6 +10,7 @@ in
 {
   users.users = {
     "${username}" = {
+      shell = pkgs.zsh;
       homeMode = "755";
       isNormalUser = true;
       description = "${gitUsername}";
@@ -21,7 +22,6 @@ in
         "scanner"
         "lp"
       ];
-      shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
     };
   };
