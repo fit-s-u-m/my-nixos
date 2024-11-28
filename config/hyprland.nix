@@ -46,6 +46,8 @@ with lib;
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/mountainscapedark.jpg
+          exec-once = my-lock
+          exec-once = battery-notify
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -133,7 +135,7 @@ with lib;
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},Apostrophe ,exec,emopicker9000
           bind = ${modifier},P,exec,screenshootin
-          bind = ${modifier},D, exec, bemenu-run   --hb '##467b96' --hf '##dfdfdf' --tb '##467b96' --tf '##dfdfdf' -H 30  -p 'Run:'
+          bind = ${modifier},D, exec,session-manager
           bind = ${modifier},O,exec,obs
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier},G,exec,gimp
@@ -146,10 +148,18 @@ with lib;
           bind = ${modifier},F,fullscreen,
           bind = ${modifier}SHIFT,F,togglefloating,
           bind = ${modifier}SHIFT,C,exit,
-          bind = ${modifier}SHIFT,left,movewindow,l
-          bind = ${modifier}SHIFT,right,movewindow,r
-          bind = ${modifier}SHIFT,up,movewindow,u
-          bind = ${modifier}SHIFT,down,movewindow,d
+          # bind = ${modifier},D, exec, bemenu-run   --hb '##467b96' --hf '##dfdfdf' --tb '##467b96' --tf '##dfdfdf' -H 30  -p 'Run:'
+          # bind = ${modifier}SHIFT,left,movewindow,l
+          # bind = ${modifier}SHIFT,right,movewindow,r
+          # bind = ${modifier}SHIFT,up,movewindow,u
+          # bind = ${modifier}SHIFT,down,mobravevewindow,d
+
+          # Resize windows
+          binde = ${modifier}+Shift, Right, resizeactive, 30 0
+          binde = ${modifier}+Shift, Left, resizeactive, -30 0
+          binde = ${modifier}+Shift, Up, resizeactive, 0 -30
+          binde = ${modifier}+Shift, Down, resizeactive, 0 30
+
           bind = ${modifier}SHIFT,h,movewindow,l
           bind = ${modifier}SHIFT,l,movewindow,r
           bind = ${modifier}SHIFT,k,movewindow,u

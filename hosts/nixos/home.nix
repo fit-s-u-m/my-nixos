@@ -25,7 +25,6 @@ in
     ../../config/swaync.nix
     ../../config/waybar.nix
     ../../config/wlogout.nix
-    ../../config/fastfetch
   ];
 
   # Place Files Inside Home Directory
@@ -57,7 +56,21 @@ in
     enable = true;
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
+    # config = {
+    #  init.defaultBranch = "main";
+    # };
+    # defaultEditor = "nvim";
   };
+  programs.sioyek = {
+    enable = true;
+    bindings = {
+         "screen_down" = [ "d" "<C-d>" ];
+         "screen_up" = [ "u" "<C-u>" ];
+         "toggle_statusbar" ="<C-n>";
+         "toggle_custom_color" ="<C-c>";
+         };
+   };
+
 
   # Create XDG Dirs
   xdg = {
@@ -110,6 +123,11 @@ in
     (import ../../scripts/web-search.nix { inherit pkgs; })
     (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
+
+    (import ../../scripts/my-lock.nix { inherit pkgs; })
+    # (import ../../scripts/battery-notify.nix { inherit pkgs; })
+    (import ../../scripts/session-manger.nix { inherit pkgs; })
+
     (import ../../scripts/list-hypr-bindings.nix {
       inherit pkgs;
       inherit host;
@@ -196,6 +214,66 @@ in
         ".." = "cd ..";
       };
     };
+   zsh = {
+     enable = true;
+     enableCompletion = true;
+     # pkgs.autosuggestions.enable = true;
+     # pkgs.syntaxHighlighting.enable = true;
+
+     plugins = [
+        {
+          name = "vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+        }
+      ];
+     shellAliases = {
+        update = "sudo nixos-rebuild switch --flake /home/fitsum/my-nix/#nixos";
+        q = "exit";
+        ls = "eza --icons";
+        ll = "eza -lh --icons --grid --group-directories-first";
+        la = "eza -lah --icons --grid --group-directories-first";
+        v = "nvim";
+        ".." = "cd ..";
+        ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+     };
+       initExtra = ''
+        # Custom ZSH Configuration
+        export PATH="$HOME/.local/bin:$PATH"
+        export EDITOR="nvim"
+        export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # Optional
+        zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+        function y() {
+            local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+            yazi "$@" --cwd-file="$tmp"
+            if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+              builtin cd -- "$cwd"
+            fi
+            rm -f -- "$tmp"
+        }
+
+        # Source carapace completion
+        source <(carapace _carapace)
+
+        # Initialize zoxide
+        eval "$(zoxide init zsh)"
+
+        # Bindings and keymaps
+        fzf_cd() {
+            local dir
+            dir=$(fzf)  # Use fzf to select a file or directory
+            if [[ -n "$dir" ]]; then
+                cd "$(dirname "$dir")"  # Change to the directory containing the selected file/directory
+            fi
+        }
+
+        # bind the funciton fzf to ctrl + f
+        zle -N fzf_cd_widget fzf_cd
+        bindkey '^f' fzf_cd_widget
+        fastfetch
+     '';
+     # histSize = 10000;
+   };
     home-manager.enable = true;
     hyprlock = {
       enable = true;

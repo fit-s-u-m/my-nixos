@@ -6,15 +6,15 @@
       enable = true;
       package = pkgs.rofi-wayland;
       extraConfig = {
-        modi = "drun,filebrowser,run";
+        modi = "drun";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
         font = "JetBrainsMono Nerd Font Mono 12";
         drun-display-format = "{icon} {name}";
         display-drun = " Apps";
-        display-run = " Run";
-        display-filebrowser = " File";
+        # display-run = " Run";
+        # display-filebrowser = " File";
       };
       theme =
         let
@@ -33,18 +33,21 @@
             urgent = mkLiteral "#${config.stylix.base16Scheme.base0E}";
           };
           "window" = {
-            width = mkLiteral "50%";
-            transparency = "real";
+            width = mkLiteral "20%";
+            # transparency = "real";
+            # transparency = mkLiteral "false";
+            alpha = mkLiteral "0.1";
             orientation = mkLiteral "vertical";
             cursor = mkLiteral "default";
             spacing = mkLiteral "0px";
             border = mkLiteral "2px";
             border-color = "@border-color";
             border-radius = mkLiteral "20px";
+            # background-color = mkLiteral "transparent";
             background-color = mkLiteral "@bg";
           };
           "mainbox" = {
-            padding = mkLiteral "15px";
+            padding = mkLiteral "10px";
             enabled = true;
             orientation = mkLiteral "vertical";
             children = map mkLiteral [
@@ -55,8 +58,8 @@
           };
           "inputbar" = {
             enabled = true;
-            padding = mkLiteral "10px 10px 200px 10px";
-            margin = mkLiteral "10px";
+            padding = mkLiteral "10px 10px 10px 10px";
+            margin = mkLiteral "5px";
             background-color = mkLiteral "transparent";
             border-radius = "25px";
             orientation = mkLiteral "horizontal";
@@ -70,7 +73,7 @@
           "entry" = {
             enabled = true;
             expand = false;
-            width = mkLiteral "20%";
+            width = mkLiteral "10%";
             padding = mkLiteral "10px";
             border-radius = mkLiteral "12px";
             background-color = mkLiteral "@selected";
@@ -91,8 +94,8 @@
           };
           "listview" = {
             enabled = true;
-            columns = 2;
-            lines = 6;
+            columns = 1;
+            lines = 7;
             cycle = true;
             dynamic = true;
             scrollbar = false;
