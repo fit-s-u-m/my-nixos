@@ -326,6 +326,7 @@ in
     dnsmasq
     # sound
     pavucontrol
+    alsa-utils
 
     # programing
     docker
@@ -338,9 +339,12 @@ in
     clang
     meson
     ninja
+    gnumake
     # ts
     nodejs_22
     bun
+    # 3d
+    blender
 
     # youtube
     obs-studio
@@ -578,5 +582,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-  # system.stateVersion = "24.05"; # Did you read the comment?
 }

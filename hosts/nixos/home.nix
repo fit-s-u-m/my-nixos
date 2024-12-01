@@ -234,6 +234,7 @@ in
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
         v = "nvim";
+        tree = "eza -T --icons ";
         ".." = "cd ..";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
      };
@@ -243,7 +244,7 @@ in
         export EDITOR="nvim"
         export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # Optional
         zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-        function y() {
+        function l() {
             local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
             yazi "$@" --cwd-file="$tmp"
             if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
