@@ -258,11 +258,14 @@ in
     nushell
 
     # shell-things
+    atuin # history
+    pass # password manager
     zoxide
     stow
     tree
     cmatrix
     unzip
+    zip
     unrar
     cowsay
     htop # task manger
@@ -287,6 +290,7 @@ in
     vim
     neovide
     lazygit
+    vscode
     #reader
     # sioyek
     zathura

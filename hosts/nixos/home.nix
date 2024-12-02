@@ -125,7 +125,7 @@ in
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
 
     (import ../../scripts/my-lock.nix { inherit pkgs; })
-    # (import ../../scripts/battery-notify.nix { inherit pkgs; })
+    (import ../../scripts/battery-notify.nix { inherit pkgs; })
     (import ../../scripts/session-manger.nix { inherit pkgs; })
 
     (import ../../scripts/list-hypr-bindings.nix {
@@ -175,6 +175,7 @@ in
         confirm_os_window_close = 0;
       };
       extraConfig = ''
+        enable_audio_bell no
         tab_bar_style fade
         tab_fade 1
         active_tab_font_style   bold
@@ -220,6 +221,12 @@ in
      # pkgs.autosuggestions.enable = true;
      # pkgs.syntaxHighlighting.enable = true;
 
+      profileExtra = ''
+        #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+        #  exec Hyprland
+        #fi
+      '';
+
      plugins = [
         {
           name = "vi-mode";
@@ -258,6 +265,8 @@ in
 
         # Initialize zoxide
         eval "$(zoxide init zsh)"
+        # Initialize atuin
+        eval "$(atuin init zsh)"
 
         # Bindings and keymaps
         fzf_cd() {
