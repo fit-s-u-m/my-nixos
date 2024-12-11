@@ -249,8 +249,11 @@ in
       swww
 
     # shell
+    dwt1-shell-color-scripts
+    libqalculate
     carapace
     zplug
+    youtube-tui
 
 		fish
     # zsh
@@ -284,6 +287,8 @@ in
     libfprint-tod
     libfprint-2-tod1-elan
     libfprint-2-tod1-vfs0090
+    # yet another nix helper
+    nh
 
 
     # editor
@@ -334,7 +339,8 @@ in
 
     # programing
     docker
-    cargo
+    rustup
+    # cargo
     go
     python3
     bun
@@ -381,7 +387,6 @@ in
     swappy
     yad
     inxi
-    nh
     nixfmt-rfc-style
     libvirt
     slurp
@@ -404,6 +409,7 @@ in
   environment.variables = {
     ZANEYOS_VERSION = "2.2";
     ZANEYOS = "true";
+    FLAKE = "/home/fitsum/my-nix/";
   };
 
   # Extra Portal Configuration

@@ -56,10 +56,6 @@ in
     enable = true;
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
-    # config = {
-    #  init.defaultBranch = "main";
-    # };
-    # defaultEditor = "nvim";
   };
   programs.sioyek = {
     enable = true;

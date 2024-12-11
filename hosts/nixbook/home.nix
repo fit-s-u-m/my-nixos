@@ -200,7 +200,7 @@ in
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 10;
+          grace = 3;
           hide_cursor = true;
           no_fade_in = false;
         };
@@ -213,7 +213,7 @@ in
         ];
         image = [
           {
-            path = "/home/${username}/.config/face.jpg";
+            path = "/home/${username}/.config/meme.svg";
             size = 150;
             border_size = 4;
             border_color = "rgb(0C96F9)";
