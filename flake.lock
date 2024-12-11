@@ -261,6 +261,18 @@
         "stylix": "stylix"
       }
     },
+    "snacksNvim": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-2g5omPJ8J2nCksKU7t4psA+B7JzxQ0C0OQ09tjaCBw4=",
+        "type": "file",
+        "url": "https://github.com/folke/snacks.nvim/"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/folke/snacks.nvim/"
+      }
+    },
     "stylix": {
       "inputs": {
         "base16": "base16",

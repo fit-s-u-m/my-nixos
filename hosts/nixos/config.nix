@@ -228,10 +228,10 @@ in
         thunar-volman
       ];
     };
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
+    # neovim = {
+    #   enable = true;
+    #   defaultEditor = true;
+    # };
   };
 
   nixpkgs.config.allowUnfree = true;
