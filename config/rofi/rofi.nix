@@ -6,7 +6,7 @@
       enable = true;
       package = pkgs.rofi-wayland;
       extraConfig = {
-        modi = "drun";
+        modi = "drun,calc:qalc";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
@@ -16,6 +16,9 @@
         # display-run = " Run";
         # display-filebrowser = " File";
       };
+      plugins =with pkgs; [
+      (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+      ];
       theme =
         let
           inherit (config.lib.formats.rasi) mkLiteral;
@@ -33,7 +36,7 @@
             urgent = mkLiteral "#${config.stylix.base16Scheme.base0E}";
           };
           "window" = {
-            width = mkLiteral "20%";
+            width = mkLiteral "50%";
             # transparency = "real";
             # transparency = mkLiteral "false";
             alpha = mkLiteral "0.1";

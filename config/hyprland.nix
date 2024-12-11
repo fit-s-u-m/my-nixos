@@ -136,14 +136,15 @@ with lib;
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec,rofi-launcher
           bind = ${modifier}SHIFT,W,exec,web-search
-          bind = ${modifier}SHIFT,right,exec,wallsetter
+          bind = ALT SHIFT,right,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},Apostrophe ,exec,emopicker9000
           bind = ${modifier},P,exec,screenshootin
+          bind = ${modifier}SHIFT,P,exec,hyprpicker -a
           bind = ${modifier},D, exec,session-manager
           bind = ${modifier},O,exec,obs
-          bind = ${modifier},C,exec,hyprpicker -a
+          bind = ${modifier},c,exec,rofi -show calc -modi calc -no-show-match -no-sort
           bind = ${modifier},G,exec,gimp
           bind = ${modifier}SHIFT,G,exec,godot4
           bind = ${modifier},E,exec,thunar
