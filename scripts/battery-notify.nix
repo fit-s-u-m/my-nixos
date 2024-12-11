@@ -62,17 +62,21 @@ fn_status_change() {
     fi
 
     # Check battery conditions and trigger appropriate actions
-    if [[ $battery_percentage -le $battery_low_threshold && "$battery_status" == "Discharging" ]]; then
+    if [[ $battery_percentage -le $battery_low_threshold && "$battery_status" == "discharging" ]]; then
       send_notification "Battery Low" "Battery is at $battery_percentage%. Please connect the charger."
     fi
 
-    if [[ $battery_percentage -le $battery_critical_threshold && "$battery_status" == "Discharging" ]]; then
+    if [[ $battery_percentage -le $battery_critical_threshold && "$battery_status" == "discharging" ]]; then
       send_notification "Battery Critical" "Battery is at $battery_percentage%. System will suspend in $((timer / 60)) minutes."
       sleep "$timer"
+      hyprlock
       systemctl suspend
     fi
 
-    if [[ $battery_percentage -ge $unplug_charger_threshold && "$battery_status" != "Discharging" ]]; then
+    if [[ $battery_percentage == $unplug_charger_threshold && "$battery_status" != "discharging" ]]; then
+      send_notification "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger."
+    fi
+    if [[ $battery_percentage == $battery_full_threshold && "$battery_status" != "discharging" ]]; then
       send_notification "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger."
     fi
   fi
