@@ -1,10 +1,4 @@
-{ pkgs, inputs, ... }:
-let
-  finecmdline = pkgs.vimUtils.buildVimPlugin {
-    name = "fine-cmdline";
-    src = inputs.fine-cmdline;
-  };
-in
+{ pkgs, ... }:
 {
   programs = {
     neovim = {
@@ -28,13 +22,12 @@ in
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
-        alpha-nvim
         auto-session
         bufferline-nvim
         dressing-nvim
         indent-blankline-nvim
         nui-nvim
-        finecmdline
+        # finecmdline
         nvim-treesitter.withAllGrammars
         lualine-nvim
         nvim-autopairs
@@ -65,7 +58,6 @@ in
       ];
       extraConfig = ''
         set noemoji
-        nnoremap : <cmd>FineCmdline<CR>
       '';
       extraLuaConfig = ''
         ${builtins.readFile ./nvim/options.lua}
@@ -80,14 +72,14 @@ in
         ${builtins.readFile ./nvim/plugins/telescope.lua}
         ${builtins.readFile ./nvim/plugins/todo-comments.lua}
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
-        ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
+        # ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
         require("ibl").setup()
         require("bufferline").setup{}
         require("lualine").setup({
           icons_enabled = true,
         })
         require("catppuccin").setup({
-           transparent_background = true,  -- Optional: Enable transparent background
+           transparent_background = true,
         })
       '';
     };
