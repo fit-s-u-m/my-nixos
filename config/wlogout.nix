@@ -63,14 +63,14 @@
         border-radius: 0px;
         box-shadow: none;
         text-shadow: none;
-        # animation: gradient_f 20s ease-in infinite;
-        #     background-repeat: no-repeat;
-        #   	background-position: center;
-        #   	background-size: 25%;
-        #   	border-style: solid;
-        #   	background-color: rgba(12, 12, 12, 0.3);
-        #   	border: 3px solid #${config.stylix.base16Scheme.base05};
-        #     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        animation: gradient_f 20s ease-in infinite;
+            background-repeat: no-repeat;
+          	background-position: center;
+          	background-size: 25%;
+          	border-style: solid;
+          	background-color: rgba(12, 12, 12, 0.3);
+          	border: 3px solid #${config.stylix.base16Scheme.base05};
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
       button:focus,
       button:active,
@@ -81,36 +81,36 @@
         animation: gradient_f 20s ease-in infinite;
         transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
       }
-      # #logout {
-      # 	margin: 10px;
-      # 	border-radius: 20px;
-      # 	background-image: image(url("icons/logout.png"));
-      # }
-      # #suspend {
-      # 	margin: 10px;
-      # 	border-radius: 20px;
-      # 	background-image: image(url("icons/suspend.png"));
-      # }
-      # #shutdown {
-      # 	margin: 10px;
-      # 	border-radius: 20px;
-      # 	background-image: image(url("icons/shutdown.png"));
-      # }
-      # #reboot {
-      # 	margin: 10px;
-      # 	border-radius: 20px;
-      # 	background-image: image(url("icons/reboot.png"));
-      # }
-      # #lock {
-      # 	margin: 10px;
-      # 	border-radius: 20px;
-      # 	background-image: image(url("icons/lock.png"));
-      # }
-      # #hibernate {
-      # 	margin: 10px;
-      # 	border-radius: 20px;
-      # 	background-image: image(url("icons/hibernate.png"));
-      # }
+       #logout {
+       	margin: 10px;
+       	border-radius: 20px;
+       	background-image: image(url("icons/logout.png"));
+       }
+       #suspend {
+       	margin: 10px;
+       	border-radius: 20px;
+       	background-image: image(url("icons/suspend.png"));
+       }
+       #shutdown {
+       	margin: 10px;
+       	border-radius: 20px;
+       	background-image: image(url("icons/shutdown.png"));
+       }
+       #reboot {
+       	margin: 10px;
+       	border-radius: 20px;
+       	background-image: image(url("icons/reboot.png"));
+       }
+       #lock {
+       	margin: 10px;
+       	border-radius: 20px;
+       	background-image: image(url("icons/lock.png"));
+       }
+       #hibernate {
+       	margin: 10px;
+       	border-radius: 20px;
+       	background-image: image(url("icons/hibernate.png"));
+       }
       button:hover#hibernate {
           margin : 10px 0px 0px 10px;
       }

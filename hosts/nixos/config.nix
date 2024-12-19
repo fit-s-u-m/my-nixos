@@ -240,13 +240,17 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    hyprland
     # Image things
       # photoshop
       gimp
       # screen shot
       grim
+      grimblast
       # wallpaper
       swww
+      #clipboard manger
+      cliphist
 
     # shell
     dwt1-shell-color-scripts
@@ -254,8 +258,12 @@ in
     carapace
     zplug
     youtube-tui
+    yt-dlp
 
-		fish
+    # battery performance
+    auto-cpufreq
+
+    fish
     # zsh
     zsh-vi-mode
     nushell
@@ -292,6 +300,7 @@ in
 
 
     # editor
+	neovim
     vim
     neovide
     lazygit
@@ -326,6 +335,8 @@ in
     swaynotificationcenter
     # idle manager
     swayidle
+    swaylock-effects
+    # swaymsg
 
     # social
     discord
@@ -337,9 +348,22 @@ in
     pavucontrol
     alsa-utils
 
-    # programing
+    # programming
     docker
     rustup
+    #java
+    jdk
+
+    # ocaml
+    opam
+    dune_3
+
+    #lsp
+    rust-analyzer
+    gopls
+    jdt-language-server
+    luajitPackages.lua-lsp
+
     # cargo
     go
     python3
@@ -350,6 +374,10 @@ in
     meson
     ninja
     gnumake
+
+    #sandboxing
+    bubblewrap
+    
     # ts
     nodejs_22
     bun
@@ -365,12 +393,14 @@ in
     # torrent downloadder
     torrential
 
+
     # filemanager
     yazi
     lf
     # sound firmware 
     sof-firmware
     # every thing I don't know
+    jq
     v4l-utils
     lolcat
     libvirt
@@ -431,6 +461,19 @@ in
   } ];
   # Services to start
   services = {
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        battery = {
+           governor = "powersave";
+           turbo = "never";
+        };
+        charger = {
+           governor = "performance";
+           turbo = "auto";
+        };
+      };
+    };
     upower.enable = true; # maintian power
     xserver = {
       enable = false;

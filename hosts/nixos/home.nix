@@ -17,8 +17,6 @@ in
   imports = [
     ../../config/emoji.nix
     ../../config/fastfetch
-    ../../config/hyprland.nix
-    ../../config/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
@@ -217,11 +215,11 @@ in
      # pkgs.autosuggestions.enable = true;
      # pkgs.syntaxHighlighting.enable = true;
 
-      profileExtra = ''
-        #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-        #  exec Hyprland
-        #fi
-      '';
+    profileExtra = ''
+      #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+      #  exec Hyprland
+      #fi
+    '';
 
      plugins = [
         {
@@ -263,6 +261,8 @@ in
         eval "$(zoxide init zsh)"
         # Initialize atuin
         eval "$(atuin init zsh)"
+        # for ocaml
+        eval "$(opam env)"
 
         # Bindings and keymaps
         fzf_cd() {
