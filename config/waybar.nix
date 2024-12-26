@@ -279,8 +279,8 @@ with lib;
         #custom-hyprbindings, #network, #battery,#backlight,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
-          background: #${config.stylix.base16Scheme.base0F};
           color: #${config.stylix.base16Scheme.base00};
+          background: #${config.stylix.base16Scheme.base04};
           margin: 4px 0px;
           margin-right: 7px;
           border-radius: 10px 24px 10px 24px;
@@ -298,3 +298,4 @@ with lib;
     ];
   };
 }
+          # background: #${config.stylix.base16Scheme.base0F};

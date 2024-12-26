@@ -228,10 +228,6 @@ in
         thunar-volman
       ];
     };
-    # neovim = {
-    #   enable = true;
-    #   defaultEditor = true;
-    # };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -348,11 +344,25 @@ in
     pavucontrol
     alsa-utils
 
+    postman
+
     # programming
     docker
+    docker-compose
     rustup
+
+    rabbitmq-server
     #java
-    jdk
+    # jdk
+
+    #database
+    postgresql
+    pgadmin4
+
+    # sping boot
+    # rabbitmq-java-client
+    jdk17
+    maven
 
     # ocaml
     opam
@@ -461,17 +471,25 @@ in
   } ];
   # Services to start
   services = {
+    postgresql = {
+      enable = true;
+      ensureDatabases = [ "mydatabase" ];
+      authentication = pkgs.lib.mkOverride 10 ''
+        #type database  DBuser  auth-method
+        local all       all     trust
+      '';
+    };
     auto-cpufreq = {
       enable = true;
       settings = {
-        battery = {
-           governor = "powersave";
-           turbo = "never";
-        };
-        charger = {
-           governor = "performance";
-           turbo = "auto";
-        };
+          battery = {
+             governor = "powersave";
+             turbo = "never";
+          };
+          charger = {
+             governor = "performance";
+             turbo = "auto";
+          };
       };
     };
     upower.enable = true; # maintian power

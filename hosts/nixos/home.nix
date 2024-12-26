@@ -276,7 +276,6 @@ in
         # bind the funciton fzf to ctrl + f
         zle -N fzf_cd_widget fzf_cd
         bindkey '^f' fzf_cd_widget
-        fastfetch
      '';
      # histSize = 10000;
    };

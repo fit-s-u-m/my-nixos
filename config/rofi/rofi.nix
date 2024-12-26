@@ -6,7 +6,7 @@
       enable = true;
       package = pkgs.rofi-wayland;
       extraConfig = {
-        modi = "drun,calc:qalc";
+        modi = "drun,calc:qalc,window";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
