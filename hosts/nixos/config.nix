@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   host,
@@ -250,6 +251,7 @@ in
 
     # shell
     dwt1-shell-color-scripts
+    mpvScripts.mpris
     libqalculate
     carapace
     zplug
@@ -258,6 +260,7 @@ in
 
     # battery performance
     auto-cpufreq
+    #terminal
 
     fish
     # zsh
@@ -312,13 +315,18 @@ in
     wl-clipboard
     hyprpicker
     brightnessctl
+    # wifi
+    hotspot
+    linux-wifi-hotspot
 
     # player and converter
     ffmpeg
     playerctl
     mpd
+    mpdris2
       # music
       spotify
+      ncmpcpp
       mpv
     # appimage runner
     appimage-run
@@ -358,11 +366,13 @@ in
     #database
     postgresql
     pgadmin4
+    pgadmin4-desktopmode
 
     # sping boot
     # rabbitmq-java-client
     jdk17
     maven
+    gradle
 
     # ocaml
     opam
@@ -381,6 +391,7 @@ in
     # compilers
     gcc
     clang
+    clang-tools
     meson
     ninja
     gnumake
@@ -471,13 +482,16 @@ in
   } ];
   # Services to start
   services = {
-    postgresql = {
+      postgresql = {
       enable = true;
       ensureDatabases = [ "mydatabase" ];
       authentication = pkgs.lib.mkOverride 10 ''
-        #type database  DBuser  auth-method
-        local all       all     trust
-      '';
+      #type database  DBuser  auth-method
+      local all       all     trust
+      host    all             all             127.0.0.1/32            md5
+      host    all             all             ::1/128                 md5
+
+    '';
     };
     auto-cpufreq = {
       enable = true;

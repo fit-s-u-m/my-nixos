@@ -2,7 +2,6 @@
   description = "my nixos Setup";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
@@ -11,7 +10,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {nixpkgs-unstable ,nixpkgs, home-manager, ... }@inputs:
     let
       system = "aarch64-linux";
       host = "nixos";

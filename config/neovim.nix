@@ -16,10 +16,11 @@
         luajitPackages.lua-lsp
         nil
         rust-analyzer
-        #nodePackages.bash-language-server
+        vtsls
         yaml-language-server
         pyright
         marksman
+        ocamlPackages.ocaml-lsp
       ];
       plugins = with pkgs.vimPlugins; [
         auto-session
@@ -48,13 +49,14 @@
         luasnip
         telescope-nvim
         todo-comments-nvim
-        nvim-tree-lua
         telescope-fzf-native-nvim
         vim-tmux-navigator
         copilot-vim
         which-key-nvim
         flash-nvim
         catppuccin-nvim
+        oil-nvim
+        snacks-nvim
       ];
       extraConfig = ''
         set noemoji
@@ -62,17 +64,16 @@
       extraLuaConfig = ''
         ${builtins.readFile ./nvim/options.lua}
         ${builtins.readFile ./nvim/keymaps.lua}
-        ${builtins.readFile ./nvim/plugins/alpha.lua}
         ${builtins.readFile ./nvim/plugins/autopairs.lua}
         ${builtins.readFile ./nvim/plugins/auto-session.lua}
         ${builtins.readFile ./nvim/plugins/comment.lua}
         ${builtins.readFile ./nvim/plugins/cmp.lua}
         ${builtins.readFile ./nvim/plugins/lsp.lua}
-        ${builtins.readFile ./nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ./nvim/plugins/telescope.lua}
         ${builtins.readFile ./nvim/plugins/todo-comments.lua}
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
-        # ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
+        ${builtins.readFile ./nvim/plugins/oil.lua}
+        ${builtins.readFile ./nvim/plugins/snacks.lua}
         require("ibl").setup()
         require("bufferline").setup{}
         require("lualine").setup({
