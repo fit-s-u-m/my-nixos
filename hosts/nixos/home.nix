@@ -63,6 +63,9 @@ in
          "toggle_statusbar" ="<C-n>";
          "toggle_custom_color" ="<C-c>";
          };
+    config ={
+       "should_launch_new_window" ="true";
+    };
    };
 
 

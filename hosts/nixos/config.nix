@@ -261,7 +261,7 @@ in
     # battery performance
     auto-cpufreq
     #terminal
-
+    ghostty
     fish
     # zsh
     zsh-vi-mode
@@ -286,7 +286,10 @@ in
     bat
     ripgrep
     fzf
+    gum
     zellij
+    tmux
+    sesh
     upower # power mangement
     # fingerPrint
     usbutils
