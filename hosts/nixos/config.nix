@@ -116,8 +116,15 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns="none";
+  networking.useDHCP=false;
+  networking.dhcpcd.enable=false;
+
   networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  # networking.networkmanager.wifi.powersave=true;
+
+  networking.nameservers=["1.1.1.1" "1.0.0.1" "8.8.8.8" "10.2.6.20" "10.2.6.21" "8.8.4.4"];
 
   # Set your time zone.
   time.timeZone = "Africa/Addis_Ababa";
@@ -261,7 +268,9 @@ in
     # battery performance
     auto-cpufreq
     #terminal
-    ghostty
+    kitty
+    slack
+    #ghostty
     fish
     # zsh
     zsh-vi-mode
@@ -343,6 +352,8 @@ in
     # idle manager
     swayidle
     swaylock-effects
+
+    waybar
     # swaymsg
 
     # social
@@ -374,6 +385,7 @@ in
     # sping boot
     # rabbitmq-java-client
     jdk17
+    google-java-format
     maven
     gradle
 
@@ -417,6 +429,7 @@ in
     # torrent downloadder
     torrential
 
+    ntfs3g
 
     # filemanager
     yazi

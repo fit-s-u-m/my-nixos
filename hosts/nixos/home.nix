@@ -21,7 +21,7 @@ in
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
     ../../config/swaync.nix
-    ../../config/waybar.nix
+    # ../../config/waybar.nix
     ../../config/wlogout.nix
   ];
 
@@ -163,23 +163,6 @@ in
         vim_keys = true;
       };
     };
-    kitty = {
-      enable = true;
-      package = pkgs.kitty;
-      settings = {
-        scrollback_lines = 2000;
-        wheel_scroll_min_lines = 1;
-        window_padding_width = 4;
-        confirm_os_window_close = 0;
-      };
-      extraConfig = ''
-        enable_audio_bell no
-        tab_bar_style fade
-        tab_fade 1
-        active_tab_font_style   bold
-        inactive_tab_font_style bold
-      '';
-    };
      starship = {
             enable = true;
             package = pkgs.starship;
@@ -213,76 +196,6 @@ in
         ".." = "cd ..";
       };
     };
-   zsh = {
-     enable = true;
-     enableCompletion = true;
-     # pkgs.autosuggestions.enable = true;
-     # pkgs.syntaxHighlighting.enable = true;
-
-    profileExtra = ''
-      #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-      #  exec Hyprland
-      #fi
-    '';
-
-     plugins = [
-        {
-          name = "vi-mode";
-          src = pkgs.zsh-vi-mode;
-          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-        }
-      ];
-     shellAliases = {
-        update = "sudo nixos-rebuild switch --flake /home/fitsum/my-nix/#nixos";
-        q = "exit";
-        ls = "eza --icons";
-        ll = "eza -lh --icons --grid --group-directories-first";
-        la = "eza -lah --icons --grid --group-directories-first";
-        v = "nvim";
-        tree = "eza -T --icons ";
-        ".." = "cd ..";
-        ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
-     };
-       initExtra = ''
-        # Custom ZSH Configuration
-        export PATH="$HOME/.local/bin:$PATH"
-        export EDITOR="nvim"
-        export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # Optional
-        zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-        function l() {
-            local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-            yazi "$@" --cwd-file="$tmp"
-            if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-              builtin cd -- "$cwd"
-            fi
-            rm -f -- "$tmp"
-        }
-
-        # Source carapace completion
-        source <(carapace _carapace)
-
-        # Initialize zoxide
-        eval "$(zoxide init zsh)"
-        # Initialize atuin
-        eval "$(atuin init zsh)"
-        # for ocaml
-        eval "$(opam env)"
-
-        # Bindings and keymaps
-        fzf_cd() {
-            local dir
-            dir=$(fzf)  # Use fzf to select a file or directory
-            if [[ -n "$dir" ]]; then
-                cd "$(dirname "$dir")"  # Change to the directory containing the selected file/directory
-            fi
-        }
-
-        # bind the funciton fzf to ctrl + f
-        zle -N fzf_cd_widget fzf_cd
-        bindkey '^f' fzf_cd_widget
-     '';
-     # histSize = 10000;
-   };
     home-manager.enable = true;
     hyprlock = {
       enable = true;
