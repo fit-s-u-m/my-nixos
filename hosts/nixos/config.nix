@@ -398,6 +398,8 @@ in
     gopls
     jdt-language-server
     luajitPackages.lua-lsp
+    tailwindcss-language-server
+    emmet-ls
 
     # cargo
     go
