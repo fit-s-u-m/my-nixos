@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail;
+  inherit (import ./variables.nix) gitUsername gitEmail browser;
 in
 {
   # Home Manager Settings
@@ -22,7 +22,7 @@ in
     ../../config/rofi/config-long.nix
     ../../config/swaync.nix
     # ../../config/waybar.nix
-    ../../config/wlogout.nix
+    # ../../config/wlogout.nix
   ];
 
   # Place Files Inside Home Directory
@@ -30,10 +30,10 @@ in
     source = ../../config/wallpapers;
     recursive = true;
   };
-  home.file.".config/wlogout/icons" = {
-    source = ../../config/wlogout;
-    recursive = true;
-  };
+  # home.file.".config/wlogout/icons" = {
+  #   source = ../../config/wlogout;
+  #   recursive = true;
+  # };
   home.file.".face.icon".source = ../../config/face.jpg;
   home.file.".config/face.jpg".source = ../../config/face.jpg;
   home.file.".config/swappy/config".text = ''
@@ -74,6 +74,17 @@ in
     userDirs = {
       enable = true;
       createDirectories = true;
+    };
+    mimeApps = {
+      enable=true;
+      defaultApplications = {
+      "text/html" = "${browser}";
+      "x-scheme-handler/http" = "${browser}";
+      "x-scheme-handler/https" = "${browser}";
+      "image/png" = "imv.desktop";
+      "image/jpg" = "imv.desktop";
+      "image/jpeg" = "imv.desktop";
+    };
     };
   };
 

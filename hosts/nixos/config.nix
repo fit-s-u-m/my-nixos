@@ -9,6 +9,17 @@
 }:
 let
   inherit (import ./variables.nix) keyboardLayout;
+
+  # Import package lists
+  music = import ./packages/music.nix { inherit pkgs; };
+  shell = import ./packages/shell.nix { inherit pkgs; };
+  lsp = import ./packages/lsp.nix { inherit pkgs; };
+  application = import ./packages/applications.nix { inherit pkgs; };
+  others = import ./packages/others.nix { inherit pkgs; };
+  system = import ./packages/system.nix { inherit pkgs; };
+
+  # Combine all package lists
+  allPackages =  music ++ shell ++ lsp ++ application ++ others ++ system;
 in
 {
   imports = [
@@ -242,226 +253,245 @@ in
   users = {
     mutableUsers = true;
   };
+  environment.etc."issue".text = ''
+       .S_sSSs      sSSs   .S    S.     sSSs   .S_SsS_S.    .S   .S_SSSs     .S    S.  
+      .SS~YS%%b    d%%SP  .SS    SS.   d%%SP  .SS~S*S~SS.  .SS  .SS~SSSSS   .SS    SS. 
+      S%S   `S%b  d%S'    S%S    S%S  d%S'    S%S `Y' S%S  S%S  S%S   SSSS  S%S    S%S 
+      S%S    S%S  S%S     S%S    S%S  S%S     S%S     S%S  S%S  S%S    S%S  S%S    S%S 
+      S%S    S&S  S&S     S%S SSSS%S  S&S     S%S     S%S  S&S  S%S SSSS%S  S%S SSSS%S 
+      S&S    S&S  S&S_Ss  S&S  SSS&S  S&S_Ss  S&S     S&S  S&S  S&S  SSS%S  S&S  SSS&S 
+      S&S    S&S  S&S~SP  S&S    S&S  S&S~SP  S&S     S&S  S&S  S&S    S&S  S&S    S&S 
+      S&S    S&S  S&S     S&S    S&S  S&S     S&S     S&S  S&S  S&S    S&S  S&S    S&S 
+      S*S    S*S  S*b     S*S    S*S  S*b     S*S     S*S  S*S  S*S    S&S  S*S    S*S 
+      S*S    S*S  S*S.    S*S    S*S  S*S.    S*S     S*S  S*S  S*S    S*S  S*S    S*S 
+      S*S    S*S   SSSbs  S*S    S*S   SSSbs  S*S     S*S  S*S  S*S    S*S  S*S    S*S 
+      S*S    SSS    YSSP  SSS    S*S    YSSP  SSS     S*S  S*S  SSS    S*S  SSS    S*S 
+      SP                         SP                   SP   SP          SP          SP  
+      Y                          Y                    Y    Y           Y           Y   
 
-  environment.systemPackages = with pkgs; [
-    hyprland
-    # Image things
-      # photoshop
-      gimp
-      # screen shot
-      grim
-      grimblast
-      # wallpaper
-      swww
-      #clipboard manger
-      cliphist
-
-    # shell
-    dwt1-shell-color-scripts
-    mpvScripts.mpris
-    libqalculate
-    carapace
-    zplug
-    youtube-tui
-    yt-dlp
-
-    # battery performance
-    auto-cpufreq
-    #terminal
-    kitty
-    slack
-    #ghostty
-    fish
-    # zsh
-    zsh-vi-mode
-    nushell
-
-    # shell-things
-    atuin # history
-    pass # password manager
-    zoxide
-    stow
-    tree
-    cmatrix
-    unzip
-    zip
-    unrar
-    cowsay
-    htop # task manger
-    wget
-    killall
-    eza
-    git
-    bat
-    ripgrep
-    fzf
-    gum
-    zellij
-    tmux
-    sesh
-    upower # power mangement
-    # fingerPrint
-    usbutils
-    fprintd
-    libfprint-tod
-    libfprint-2-tod1-elan
-    libfprint-2-tod1-vfs0090
-    # yet another nix helper
-    nh
+  '';
 
 
-    # editor
-	neovim
-    vim
-    neovide
-    lazygit
-    vscode
-    #reader
-    # sioyek
-    zathura
-
-    # login-manger
-    greetd.tuigreet
-
-    # window-manger
-    wl-clipboard
-    hyprpicker
-    brightnessctl
-    # wifi
-    hotspot
-    linux-wifi-hotspot
-
-    # player and converter
-    ffmpeg
-    playerctl
-    mpd
-    mpdris2
-      # music
-      spotify
-      ncmpcpp
-      mpv
-    # appimage runner
-    appimage-run
-
-    # browser
-    brave
-    firefox
-    # notification service
-    libnotify
-    swaynotificationcenter
-    # idle manager
-    swayidle
-    swaylock-effects
-
-    waybar
-    # swaymsg
-
-    # social
-    discord
-    telegram-desktop
-    # network
-    networkmanagerapplet
-    dnsmasq
-    # sound
-    pavucontrol
-    alsa-utils
-
-    postman
-
-    # programming
-    docker
-    docker-compose
-    rustup
-
-    rabbitmq-server
-    #java
-    # jdk
-
-    #database
-    postgresql
-    pgadmin4
-    pgadmin4-desktopmode
-
-    # sping boot
-    # rabbitmq-java-client
-    jdk17
-    google-java-format
-    maven
-    gradle
-
-    # ocaml
-    opam
-    dune_3
-
-    #lsp
-    rust-analyzer
-    gopls
-    jdt-language-server
-    luajitPackages.lua-lsp
-    tailwindcss-language-server
-    emmet-ls
-
-    # cargo
-    go
-    python3
-    bun
-    # compilers
-    gcc
-    clang
-    clang-tools
-    meson
-    ninja
-    gnumake
-
-    #sandboxing
-    bubblewrap
-    
-    # ts
-    nodejs_22
-    bun
-    # 3d
-    blender
-
-    # youtube
-    obs-studio
-    obsidian
-
-    # launcher
-    bemenu
-    # torrent downloadder
-    torrential
-
-    ntfs3g
-
-    # filemanager
-    yazi
-    lf
-    # sound firmware 
-    sof-firmware
-    # every thing I don't know
-    jq
-    v4l-utils
-    lolcat
-    libvirt
-    lxqt.lxqt-policykit
-    lm_sensors
-    ydotool
-    duf
-    ncdu
-    pciutils
-    socat
-    lshw
-    pkg-config
-    virt-viewer
-    swappy
-    yad
-    inxi
-    nixfmt-rfc-style
-    libvirt
-    slurp
-    file-roller
-    imv
-  ];
+  environment.systemPackages = allPackages;
+ #  environment.systemPackages = with pkgs; [
+ #    hyprland
+ #    # Image things
+ #      # photoshop
+ #      gimp
+ #      # screen shot
+ #      grim
+ #      grimblast
+ #      # wallpaper
+ #      swww
+ #      #clipboard manger
+ #      cliphist
+	#
+ #    # shell
+ #    dwt1-shell-color-scripts
+ #    mpvScripts.mpris
+ #    libqalculate
+ #    carapace
+ #    zplug
+ #    youtube-tui
+ #    yt-dlp
+	#
+ #    # battery performance
+ #    auto-cpufreq
+ #    #terminal
+ #    kitty
+ #    slack
+ #    #ghostty
+ #    fish
+ #    # zsh
+ #    zsh-vi-mode
+ #    nushell
+	#
+ #    # shell-things
+ #    atuin # history
+ #    pass # password manager
+ #    zoxide
+ #    stow
+ #    tree
+ #    cmatrix
+ #    unzip
+ #    zip
+ #    unrar
+ #    cowsay
+ #    htop # task manger
+ #    wget
+ #    killall
+ #    eza
+ #    git
+ #    bat
+ #    ripgrep
+ #    fzf
+ #    gum
+ #    zellij
+ #    tmux
+ #    sesh
+ #    upower # power mangement
+ #    # fingerPrint
+ #    usbutils
+ #    fprintd
+ #    libfprint-tod
+ #    libfprint-2-tod1-elan
+ #    libfprint-2-tod1-vfs0090
+ #    # yet another nix helper
+ #    nh
+	#
+	#
+ #    # editor
+	# neovim
+ #    vim
+ #    neovide
+ #    lazygit
+ #    vscode
+ #    #reader
+ #    # sioyek
+ #    zathura
+	#
+ #    # login-manger
+ #    greetd.tuigreet
+	#
+ #    # window-manger
+ #    wl-clipboard
+ #    hyprpicker
+ #    brightnessctl
+ #    # wifi
+ #    hotspot
+ #    linux-wifi-hotspot
+	#
+ #    # player and converter
+ #    ffmpeg
+ #    playerctl
+ #    mpd
+ #    mpdris2
+ #      # music
+ #      spotify
+ #      ncmpcpp
+ #      mpv
+ #    # appimage runner
+ #    appimage-run
+	#
+ #    # browser
+ #    brave
+ #    firefox
+ #    # notification service
+ #    libnotify
+ #    swaynotificationcenter
+ #    # idle manager
+ #    swayidle
+ #    swaylock-effects
+	#
+ #    waybar
+ #    # swaymsg
+	#
+ #    # social
+ #    discord
+ #    telegram-desktop
+ #    # network
+ #    networkmanagerapplet
+ #    dnsmasq
+ #    # sound
+ #    pavucontrol
+ #    alsa-utils
+	#
+ #    postman
+	#
+ #    # programming
+ #    docker
+ #    docker-compose
+ #    rustup
+	#
+ #    rabbitmq-server
+ #    #java
+ #    # jdk
+	#
+ #    #database
+ #    postgresql
+ #    pgadmin4
+ #    pgadmin4-desktopmode
+	#
+ #    # sping boot
+ #    # rabbitmq-java-client
+ #    jdk17
+ #    google-java-format
+ #    maven
+ #    gradle
+	#
+ #    # ocaml
+ #    opam
+ #    dune_3
+	#
+ #    #lsp
+ #    rust-analyzer
+ #    gopls
+ #    jdt-language-server
+ #    luajitPackages.lua-lsp
+ #    tailwindcss-language-server
+ #    emmet-ls
+	#
+ #    # cargo
+ #    go
+ #    python3
+ #    bun
+ #    # compilers
+ #    gcc
+ #    clang
+ #    clang-tools
+ #    meson
+ #    ninja
+ #    gnumake
+	#
+ #    #sandboxing
+ #    bubblewrap
+ #    
+ #    # ts
+ #    nodejs_22
+ #    bun
+ #    # 3d
+ #    blender
+	#
+ #    # youtube
+ #    obs-studio
+ #    obsidian
+	#
+ #    # launcher
+ #    bemenu
+ #    # torrent downloadder
+ #    torrential
+	#
+ #    ntfs3g
+	#
+ #    # filemanager
+ #    yazi
+ #    lf
+ #    # sound firmware 
+ #    sof-firmware
+ #    # every thing I don't know
+ #    jq
+ #    v4l-utils
+ #    lolcat
+ #    libvirt
+ #    lxqt.lxqt-policykit
+ #    lm_sensors
+ #    ydotool
+ #    duf
+ #    ncdu
+ #    pciutils
+ #    socat
+ #    lshw
+ #    pkg-config
+ #    virt-viewer
+ #    swappy
+ #    yad
+ #    inxi
+ #    nixfmt-rfc-style
+ #    libvirt
+ #    slurp
+ #    file-roller
+ #    imv
+ #  ];
 
   fonts = {
     packages = with pkgs; [
@@ -498,6 +528,7 @@ in
   swapDevices = [ {
     device = "/dev/nvme0n1p4";
   } ];
+
   # Services to start
   services = {
       postgresql = {
@@ -535,23 +566,8 @@ in
     fprintd = {
        enable = true;
        tod.enable = true;
-       # tod.driver = pkgs.libfprint-tod;
-       # tod.driver = pkgs.libfprint-2-tod1-vfs0090;
        tod.driver = pkgs.libfprint-2-tod1-elan;
     };
-    # greetd = {
-    #   enable = true;
-    #   vt = 3;
-    #   settings = {
-    #     default_session = {
-    #       user = username;
-    #       # .wayland-session is a script generated by home-manager, which links to the current wayland compositor(sway/hyprland or others).
-    #       # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
-    #       command = "$HOME/.wayland-session"; # start a wayland session directly without a login manager
-    #       # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
-    #     };
-    #   };
-    # };
     smartd = {
       enable = false;
       autodetect = true;

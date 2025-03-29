@@ -11,7 +11,7 @@
       "control-center-margin-right": 10,
       "control-center-margin-left": 10,
       "notification-icon-size": 64,
-      "notification-body-image-height": 100,
+      "notification-body-image-height": 150,
       "notification-body-image-width": 200,
       "timeout": 10,
       "timeout-low": 5,
@@ -48,8 +48,8 @@
           "text": "Notification Center"
         },
         "mpris": {
-          "image-size": 96,
-          "image-radius": 7
+          "image-size": 50,
+          "image-radius": 10
         },
         "volume": {
           "label": "󰕾"
@@ -74,6 +74,7 @@
       outline: none;
       margin: 10px;
       padding: 0;
+      border-radius:10px;
     }
     .notification {
       background: transparent;
@@ -160,7 +161,7 @@
     }
     .body-image {
       margin-top: 6px;
-      background-color: #${config.stylix.base16Scheme.base05};
+      background-color: transparent;
       border-radius: 5px
     }
     .summary {
