@@ -12,5 +12,6 @@ with pkgs; [
   playerctl
   mpd
   mpdris2
+  pulseaudioFull # audio control
 ]
 

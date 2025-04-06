@@ -20,6 +20,8 @@ in
         "scanner"
         "lp"
         "docker"
+        "audio"
+        "pipewire"
       ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;

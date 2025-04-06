@@ -7,4 +7,5 @@ with pkgs; [
     luajitPackages.lua-lsp # lua
     tailwindcss-language-server # tailwind
     emmet-ls # html
+    haskell-language-server
   ]

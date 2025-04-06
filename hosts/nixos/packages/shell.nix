@@ -102,6 +102,9 @@ with pkgs; [
   meson
   ninja
   gnumake
+  # haskell
+  haskell-ci
+  ghc
 
   fd
 
@@ -113,6 +116,7 @@ with pkgs; [
   #sound
   pamixer
   pavucontrol
+  alsa-utils
   #------------ // github commands  -------------
   gh
 
